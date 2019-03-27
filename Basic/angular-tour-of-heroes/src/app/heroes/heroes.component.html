@@ -4,7 +4,7 @@
     <ul class="heroes"> 
       <li *ngFor="let hero of heroes"
       [class.selected]="hero === selectedHero"
-      (click)="onSelect(hero, $event)">
+      (click)="onSelect(hero)">
         <span class="id">
           {{hero.id}}
         </span>
@@ -17,6 +17,5 @@
   </fieldset>
 </div>
 
-<app-hero-detail [hero]="selectedHero">
-  </app-hero-detail>
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
   

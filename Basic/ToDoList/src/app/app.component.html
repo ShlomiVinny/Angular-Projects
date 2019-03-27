@@ -1,0 +1,24 @@
+
+<div style="text-align:center">
+
+
+  <fieldset>
+    <legend>Create a new Task</legend>
+    <input name="task-header-input" [(ngModel)]="task.header" placeholder="Task header goes here!">
+     <br>
+     <input name="task-task-input" [(ngModel)]="task.task" placeholder="Task goes here!">
+     <br>
+     <input type="submit">
+
+  <!--  <input
+     name="isDone-checkbox"
+     type="checkbox"
+     [{ngModel}]="task.isDone"
+     (ngModelChange)="checkboxChange()"
+     > --> 
+  </fieldset>
+  
+<app-task [task]="selectedTask"></app-task>
+  
+ </div>
+

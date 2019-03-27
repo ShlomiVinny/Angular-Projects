@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import {HEROES} from '../heroes';
-import { $ } from 'protractor';
+import { HEROES } from '../heroes';
+
 
 @Component({
   selector: 'app-heroes',
@@ -18,10 +18,10 @@ export class HeroesComponent implements OnInit {
 
 
   selectedHero: Hero;
-onSelect(hero: Hero, $event) : void {
+  onSelect(hero: Hero) : void {
   this.selectedHero = hero;
   console.log(hero)
-  $event.stopPropagation;
+  
 }
 
 
