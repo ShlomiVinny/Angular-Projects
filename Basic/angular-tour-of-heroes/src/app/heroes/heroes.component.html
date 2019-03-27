@@ -1,0 +1,22 @@
+<div>
+  <fieldset>
+    <legend>My Heroes: </legend>
+    <ul class="heroes"> 
+      <li *ngFor="let hero of heroes"
+      [class.selected]="hero === selectedHero"
+      (click)="onSelect(hero, $event)">
+        <span class="id">
+          {{hero.id}}
+        </span>
+        <span class="isShy">
+          {{hero.isShy}}
+        </span>
+        {{hero.name}}
+      </li>
+    </ul>
+  </fieldset>
+</div>
+
+<app-hero-detail [hero]="selectedHero">
+  </app-hero-detail>
+  
