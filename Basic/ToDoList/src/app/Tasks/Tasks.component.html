@@ -14,12 +14,14 @@
           <p>{{task.taskContent}}</p>
         </article>
         <div class="app-tasks-my-tasks-task-isDone">
-          <h5 class="app-tasks-my-tasks-task-isDone-header">Completed:</h5>{{task.isDone}}
+          <h5 class="app-tasks-my-tasks-task-isDone-header">Completed:</h5>
+          <span *ngIf="task.isDone===true">Completed</span>
+          <span *ngIf="task.isDone===false">Uncompleted</span>
         </div>
         <br>
         <section>
-        <input *ngIf="task.isDone===false" type="button" value="Set task as: Completed" (click)="setAsCompleted(i)" />
-        <input *ngIf="task.isDone===true"  type="button" value="Set task as: Uncompleted" (click)="setAsUncompleted(i)" />
+        <input *ngIf="task.isDone===false" type="button" value="Set task to: Completed" (click)="setAsCompleted(i)" />
+        <input *ngIf="task.isDone===true"  type="button" value="Set task to: Uncompleted" (click)="setAsUncompleted(i)" />
       </section>
       <br>
       <section>
