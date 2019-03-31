@@ -6,5 +6,10 @@
         <input [(ngModel)]="hero.name" 
                 placeholder="Hero name">
       </label>
+      <br>
+      <label>Is the hero shy?:
+        <input type="button" [(ngModel)]="hero.isShy" (click)="changeIsShy(hero)" 
+                placeholder="Is the hero shy?">
+      </label>
     </div>
 </div>

@@ -13,6 +13,10 @@ export class HeroDetailComponent implements OnInit {
 
   constructor() { }
 
+changeIsShy(hero: Hero){
+  hero.isShy = !hero.isShy;
+}
+
   ngOnInit() {
   }
 
