@@ -11,8 +11,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   deselectHero(){
     console.log('Deselect All!')
-    
-    
   }
 
   title = 'Tour Of Heroes';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import {Hero} from './hero';
-import {HEROES} from './heroes';
+import { Hero } from './hero';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,11 @@ import {HEROES} from './heroes';
 
 export class HeroService {
 
-  constructor() { }
+  constructor( private http:HttpClient) { }
 
   getHeroes(): Observable<Hero[]> {
-    
-      return of(HEROES);
-    
-    
+    const url = 'http://iitc-400:3000/angularRXTest';
+    return this.http.get<Hero[]>(url);
   }
 
 }
