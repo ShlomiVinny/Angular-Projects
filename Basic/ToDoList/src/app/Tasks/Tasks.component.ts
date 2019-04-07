@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TASKS } from '../../models/tasks';
 import { Task } from '../../models/task';
 import { AppComponent } from '../app.component';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-Tasks',
@@ -9,15 +10,18 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./Tasks.component.css']
 })
 export class TasksComponent implements OnInit {
+  constructor(private messagesService: MessagesService) { }
 
   task: Task;
   i:number;
 
   tasks = TASKS;
- 
+  
+  
   selectedTask: Task;
   onSelect(task: Task) : void {
     this.selectedTask = task;
+    this.messagesService.add('Task Selected!');
   }
   
   setAsCompleted(i:number){
@@ -39,7 +43,7 @@ export class TasksComponent implements OnInit {
 
  
 
-  constructor() { }
+  
 
   ngOnInit() {
   }

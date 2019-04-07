@@ -1,4 +1,4 @@
 export const navbarItems = [
-    {value:'navbar-item'},
-    {value:'navbar-item'}
+    {value:'navbar-item', link: 'blank'},
+    {value:'navbar-item', link: 'blank'}
 ]

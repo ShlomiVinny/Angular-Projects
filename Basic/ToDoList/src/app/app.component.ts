@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Task } from 'src/models/task';
 import { TASKS } from 'src/models/tasks';
+import { MessagesService } from './messages.service';
 
 
 
@@ -11,6 +12,7 @@ import { TASKS } from 'src/models/tasks';
 })
 
 export class AppComponent {
+  constructor(private messagesService: MessagesService){}
   title = 'ToDoList';
 
 
@@ -20,7 +22,7 @@ export class AppComponent {
   tasksCount = TASKS.length; //one task already exists
   header: string;
   taskContent: string;
-
+  
 
   tasks = TASKS;
 
@@ -29,9 +31,10 @@ export class AppComponent {
     if (header != '' && header != undefined) {
       this.tasksCount++;
       TASKS.push(new Task(this.tasksCount, this.header, this.taskContent, false));
+      this.messagesService.add('New task added!')
       this.header = '';
       this.taskContent = '';
-    } else alert('Please enter a task name');
+    } else this.messagesService.add('Please enter a task name');
     console.log(this.tasksCount);
   }
 

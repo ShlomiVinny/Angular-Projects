@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { HEROES } from '../heroes';
 
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
   styleUrls: ['./heroes.component.css']
 })
+
 
 export class HeroesComponent implements OnInit {
   hero : Hero;
@@ -16,7 +18,6 @@ export class HeroesComponent implements OnInit {
   onSelect(hero: Hero) : void {
   this.selectedHero = hero;
   console.log(hero)
-
 }
 
   constructor(private heroService: HeroService) { }
@@ -25,11 +26,7 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe(data => this.heroes = data)
   }
 
-  ngOnInit(): void {
-    
-      this.getHeroes();
-    
-    
+  ngOnInit() {
   }
 
 }

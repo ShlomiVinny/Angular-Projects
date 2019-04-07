@@ -1,7 +1,9 @@
-<div class="app-navbar-wrapper"> 
-<div *ngFor="let item of navbarItems">
+<div class="app-navbar-wrapper">
 
-</div>
-
+    <ul>
+        <li *ngFor="let item of navbarItems">
+            {{item.value}} {{item.link}}
+        </li>
+    </ul>
 
 </div>>
