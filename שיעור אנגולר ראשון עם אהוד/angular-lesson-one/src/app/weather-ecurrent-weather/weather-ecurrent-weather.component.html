@@ -1,0 +1,8 @@
+<p>the weather in {{ cityInfo.city }} is 35</p>
+
+<p>
+  <app-weather-flist-cities
+    [numberOfCitiesToShow]="getNumberOfCitiesToShow()"
+    (cityChosenEvent)="setChosenCityInfo($event)">
+  </app-weather-flist-cities>
+</p>
