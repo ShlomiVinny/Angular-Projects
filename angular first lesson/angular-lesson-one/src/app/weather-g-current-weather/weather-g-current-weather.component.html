@@ -1,0 +1,10 @@
+<p>the weather in {{ cityInfo.city }} is 35</p>
+
+
+<p>
+  Father component
+</p>
+<app-weather-flist-cities 
+[shaharF]="shaharG" 
+(change)="setChosenCityInfo($event)">
+</app-weather-flist-cities>

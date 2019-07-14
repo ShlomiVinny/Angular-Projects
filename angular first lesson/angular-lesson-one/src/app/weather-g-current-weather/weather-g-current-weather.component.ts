@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { CityInfo } from '../weather-flist-cities/city-info.model';
 
 @Component({
@@ -6,15 +6,20 @@ import { CityInfo } from '../weather-flist-cities/city-info.model';
   templateUrl: './weather-g-current-weather.component.html',
   styleUrls: ['./weather-g-current-weather.component.css']
 })
-export class WeatherGCurrentWeatherComponent implements OnInit {
+export class WeatherGCurrentWeatherComponent implements OnInit, OnChanges {
 
   cityInfo: CityInfo;
-  numberOfCitiesToShow = 1;
+  shaharG = 1;
 
   constructor() { }
 
   ngOnInit() {
     this.cityInfo = new CityInfo();
+    this.logShaharG();
+  }
+
+  ngOnChanges(){
+    this.logShaharG();
   }
 
   setChosenCityInfo(cityInfoOutput: CityInfo): void {
@@ -23,6 +28,13 @@ export class WeatherGCurrentWeatherComponent implements OnInit {
   }
 
   getNumberOfCitiesToShow(): number {
-    return this.numberOfCitiesToShow;
+    return this.shaharG;
   }
+
+  logShaharG() {
+    console.log("shaharG: ")
+    console.log(this.shaharG);
+  }
+
+
 }

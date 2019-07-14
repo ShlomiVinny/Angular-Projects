@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnChanges } from '@angular/core';
 import { CityInfo } from './city-info.model';
 
 @Component({
@@ -6,19 +6,27 @@ import { CityInfo } from './city-info.model';
   templateUrl: './weather-flist-cities.component.html',
   styleUrls: ['./weather-flist-cities.component.css']
 })
-export class WeatherFlistCitiesComponent implements OnInit {
+export class WeatherFlistCitiesComponent implements OnInit, OnChanges {
 
   cityInfos: Array<CityInfo>;
   @Output() cityChosenEvent = new EventEmitter<CityInfo>();
-  @Input()  numberOfCitiesToShow: number;
+  @Input()  shaharF: number;
+
 
   constructor() { }
 
   ngOnInit() {
 
     this.resetModel();
+    this.cityInfos = this.cityInfos.slice(this.shaharF);
+    console.log("ShaharF: ");
+    console.log(this.shaharF);
+  }
 
-    this.cityInfos = this.cityInfos.slice(this.numberOfCitiesToShow);
+  ngOnchanges(){
+    this.resetModel();
+    this.cityInfos = this.cityInfos.slice(this.shaharF);
+    
   }
 
   cityChosen(index: number): void {

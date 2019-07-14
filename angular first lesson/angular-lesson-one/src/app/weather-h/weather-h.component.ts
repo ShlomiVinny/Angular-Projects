@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerInfo } from './customer-info.model';
+
 
 @Component({
   selector: 'app-weather-h',
@@ -7,6 +8,7 @@ import { CustomerInfo } from './customer-info.model';
   styleUrls: ['./weather-h.component.css']
 })
 export class WeatherHComponent implements OnInit {
+
 
   customerInfo = new CustomerInfo();
 
@@ -19,4 +21,6 @@ export class WeatherHComponent implements OnInit {
     this.customerInfo.firstName = firstName;
   }
 
+
+ 
 }
