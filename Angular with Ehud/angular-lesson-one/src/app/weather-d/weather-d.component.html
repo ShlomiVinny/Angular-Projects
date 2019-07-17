@@ -1,0 +1,41 @@
+<p>input current value is {{ name }}</p>
+
+<p>
+  <input value="ehud" />
+</p>
+
+<p>
+  <input [value]="name" />
+</p>
+
+<p>
+  <input [value]="name" (blur)="doNothing()" />
+</p>
+
+<p>
+  <input [value]="name" (blur)="updateName($event)" />
+</p>
+
+<p>
+  <input [value]="name" (blur)="updateNameV2($event.target.value)" />
+</p>
+
+<p>
+  <input [value]="name + name" (input)="updateNameV2($event.target.value)" />
+</p>
+
+<p>
+  <input (input)="updateNameV2($event.target.value)" />
+</p>
+
+<p>
+  <input [value]="name" (input)="name = $event.target.value" />
+</p>
+
+<p>
+  <input [(ngModel)]="name" />
+</p>
+
+<p>
+  <input [ngModel]="name" (ngModelChange)="name = $event" />
+</p>

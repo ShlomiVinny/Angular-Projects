@@ -1,0 +1,50 @@
+properties binding
+attribute binding
+
+<p>
+  <img src="{{imageurl}}">
+</p>
+
+<p>
+  <img [src]="imageurl">
+</p>
+
+<p>
+  <img [attr.src]="imageurl">
+</p>
+
+<p>
+<button disabled>should be enabled ? 1</button>
+</p>
+
+<p>
+<button disabled>should be enabled ? 2</button>
+</p>
+
+<p>
+<button disabled=false>should be enabled ? 3</button>
+</p>
+
+<p>
+<button [disabled]="isDisabled">should be enabled 4</button>
+</p>
+
+<p>
+<button [disabled]="false">should be enabled 5</button>
+</p>
+
+<p>
+<button [disabled]="getIsDisabled()">should be enabled 6</button>
+</p>
+
+<p>
+<button disabled={{isDisabled}}>should be enabled 7</button>
+</p>
+
+<!-- <button [disabled]="makeDisabled()">press to disable</button> -->
+
+<!-- <button [disabled]="makeDisabledV2()">press to disable</button> -->
+
+<p>
+<button [disabled]="getIsDisabled()" (click)="makeDisabled()">press to disable</button>
+</p>

@@ -1,0 +1,43 @@
+<form [formGroup]="balanceInfoForm" (ngSubmit)="executeBalanceRequest()">
+  <div class="container">
+    <h1>account balance info - reactive with form group</h1>
+    <legend>Angular Forms</legend>
+    <label for="minAmount">min amount</label>
+    <input
+      id="minAmount"
+      formControlName="minAmount"
+      class="form-control"
+      type="number"
+    />
+
+    <label for="maxAmount">max amount</label>
+    <input
+      id="maxAmount"
+      formControlName="maxAmount"
+      class="form-control"
+      type="number"
+    />
+
+    <label for="freeText">free text</label>
+    <input
+      id="freeText"
+      formControlName="freeText"
+      class="form-control"
+      type="text"
+    />
+
+    <br />
+
+    <button
+      class="btn btn-success"
+      appMtSecure
+      [userIsNotLoggedInColor]="getSecurityWarningColor()"
+      type="submit"
+      [disabled]="!balanceInfoForm.valid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+
+{{ diagnostic }}

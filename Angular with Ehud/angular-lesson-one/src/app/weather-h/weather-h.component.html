@@ -1,0 +1,17 @@
+<p>customer first name is {{ customerInfo.firstName }}</p>
+
+<p>
+  <input (input)="changeCustomerFirstName($event.target.value)" />
+</p>
+
+<p>
+  <input
+    [ngModel]="customerInfo.firstName"
+    (ngModelChange)="changeCustomerFirstName($event)"
+  />
+</p>
+<p>
+  <input
+    [(ngModel)]="customerInfo.firstName"
+  />
+</p>

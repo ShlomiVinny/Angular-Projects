@@ -1,0 +1,36 @@
+<p>
+  template expression is something that can be avaluated to value template
+  expression appears inside the interpolation sign
+</p>
+
+<p>show weather: {{ currentWeather }}</p>
+
+<p>show warmer weather: {{ currentWeather + 10 }}</p>
+
+<p>show colder weather: {{ showColderWeather() }}</p>
+
+<p>make colder weather: {{ makeColderWeather() }}</p>
+
+<p>show weather: {{ currentWeather }}</p>
+
+<p>make colder weather 2nd try: {{ makeColderWeatherV2() }}</p>
+
+<p>make colder weather the right way ? {{ makeColderWeatherRightWay() }}</p>
+
+<p>show weather: {{ currentWeather }}</p>
+
+<p>
+  <button (click)="makeColderWeatherRightWay()">
+    maybe now we make colder weather the right way ?
+  </button>
+</p>
+
+<p>
+  <button (click)="doNothing()">
+    or maybe now we make colder weather the right way ?
+  </button>
+</p>
+
+<p>
+  <input (blur)="doNothing()" />
+</p>

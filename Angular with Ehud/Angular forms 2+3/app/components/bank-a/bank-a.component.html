@@ -1,0 +1,54 @@
+<div class="container">
+  <h1>account balance info - no form</h1>
+
+  <div class="form-group">
+    <label for="minAmount">min amount</label>
+    <input
+      [class.mandatory]="failedMandatoryCondition()"
+      [(ngModel)]="balanceRequestInfo.minAmount"
+      type="number"
+      class="form-control"
+      id="minAmount"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="maxAmount">max amount</label>
+    <input
+      [(ngModel)]="balanceRequestInfo.maxAmount"
+      type="number"
+      class="form-control"
+      id="maxAmount"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="freeText">free text</label>
+    <input
+      [(ngModel)]="balanceRequestInfo.freeText"
+      type="text"
+      class="form-control"
+      id="freeText"
+    />
+  </div>
+
+  <div class="form-group">
+      <label for="direction">direction</label>
+      <select
+        [(ngModel)]="balanceRequestInfo.direction"
+        class="form-control"
+        id="direction"
+      >
+        <option *ngFor="let dir of direction" [value]="dir">{{ dir }}</option>
+      </select>
+    </div>
+
+  <button
+    [disabled]="allValidationsPassed()"
+    type="submit"
+    class="btn btn-success"
+    (click)="executeBalanceRequest()"
+  >
+    Submit
+  </button>
+</div>

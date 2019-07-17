@@ -1,0 +1,41 @@
+
+  <div class="container">
+
+    <h1>account balance info - reactive no group</h1>
+
+    <label for="minAmount">min amount</label>
+    <input
+      id="minAmount"
+      [formControl]="minAmount"
+      class="form-control"
+      type="number"
+    />
+
+    <label for="maxAmount">max amount</label>
+    <input
+      id="maxAmount"
+      [formControl]="maxAmount"
+      class="form-control"
+      type="number"
+    />
+
+    <label for="freeText">free text</label>
+    <input
+      id="freeText"
+      [formControl]="freeText"
+      class="form-control"
+      type="text"
+    />
+
+    <br />
+
+    <button class="btn btn-success" (click)="executeBalanceRequest()">
+      Submit
+    </button>
+
+  </div>
+
+
+  {{ minAmount.value }}
+
+  {{ diagnostic }}

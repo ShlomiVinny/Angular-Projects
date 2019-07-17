@@ -1,0 +1,42 @@
+<p>
+  template variables element context
+</p>
+
+<ul>
+  <li *ngFor="let weatherInfo of weatherInfos">
+    {{ weatherInfo.city }}
+  </li>
+</ul>
+
+
+
+
+<p>
+  <input value="ehud" #city />
+</p>
+
+city is {{ city.value }}
+
+
+
+
+
+
+
+
+
+<p>
+  <button
+    [innerHTML]="'disabled: ' + city.disabled"
+    (click)="justClick()"
+  >submit</button>
+</p>
+
+<p>
+    <button [disabled]="!city.disabled" (click)="justClick()">hi</button>
+</p>
+
+<p>
+    counter is {{ counter }}
+</p>
+

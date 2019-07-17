@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let cityInfo of cityInfos; let i = index">
+    <div (mouseover) = "cityChosen(i)">
+        {{cityInfo.city}}
+    </div>
+  </li>
+</ul>

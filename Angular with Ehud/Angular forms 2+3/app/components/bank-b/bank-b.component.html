@@ -1,0 +1,80 @@
+<div class="container">
+
+  <h1>account balance info - template driven</h1>
+
+  <form #balanceFormRef="ngForm">
+
+    <div class="form-group">
+      <label for="minAmount">min amount</label>
+      <input
+        #balanceFormMinAmountRef
+        [(ngModel)]="balanceRequestInfo.minAmount"
+        name="minAmount"
+        type="number"
+        class="form-control"
+        id="minAmount"
+        required
+      />
+      <br />{{ balanceFormMinAmountRef.className }}
+    </div>
+
+    <div class="form-group">
+      <label for="maxAmount">max amount</label>
+      <input
+        #balanceFormMaxAmountRef
+        [(ngModel)]="balanceRequestInfo.maxAmount"
+        name="maxAmount"
+        type="number"
+        class="form-control"
+        id="maxAmount"
+      />
+      <br />{{ balanceFormMaxAmountRef.className }}
+    </div>
+
+    <div class="form-group">
+      <label for="freeText">free text</label>
+      <input
+        #balanceFormFreeTextRef
+        [(ngModel)]="balanceRequestInfo.freeText"
+        name="freeText"
+        type="text"
+        class="form-control"
+        id="freeText"
+        minlength="1"
+      />
+      <br />{{ balanceFormFreeTextRef.className }}
+    </div>
+
+    <div class="form-group">
+      <label for="direction">direction</label>
+      <select
+        #balanceFormDirectionRef="ngModel"
+        [(ngModel)]="balanceRequestInfo.direction"
+        name="direction"
+        class="form-control"
+        id="direction"
+      >
+        <option *ngFor="let dir of direction" [value]="dir">{{ dir }}</option>
+      </select>
+      <div
+        [hidden]="!balanceFormDirectionRef.pristine"
+        class="alert alert-danger"
+      >
+        directions is required
+      </div>
+      <br />{{ balanceFormDirectionRef }}
+    </div>
+
+    <button
+      [disabled]="!balanceFormRef.form.valid"
+      type="submit"
+      class="btn btn-success"
+      (click)="executeBalanceRequest(); balanceFormRef.reset()"
+    >
+      Submit
+    </button>
+
+  </form>
+</div>
+
+{{ diagnostic }}
