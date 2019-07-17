@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BalanceRequestInfo } from './balance-request-info';
 
 @Component({
@@ -6,7 +6,7 @@ import { BalanceRequestInfo } from './balance-request-info';
   templateUrl: './bank-a.component.html',
   styleUrls: ['./bank-a.component.css']
 })
-export class BankAComponent implements OnInit {
+export class BankAComponent implements OnInit, OnDestroy {
 
   balanceRequestInfo: BalanceRequestInfo;
   failedMandatoryConditionIndicator: boolean;
@@ -21,6 +21,11 @@ export class BankAComponent implements OnInit {
   ngOnInit() {
     this.direction.push('incoming');
     this.direction.push('outgoing');
+    console.log('bank a init');
+    
+  }
+  ngOnDestroy(){
+    console.log('bank a destroy');
   }
 
   executeBalanceRequest(): void {

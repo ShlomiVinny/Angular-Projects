@@ -7,7 +7,6 @@ import { BankDComponent } from './components/bank-d/bank-d.component';
 
 
 const routes: Routes = [
-  
   { path: 'bankA',   component: BankAComponent, pathMatch: 'full' },
   { path: 'bankB',   component: BankBComponent, pathMatch: 'full' },
   { path: 'bankC',   component: BankCComponent, pathMatch: 'full' },

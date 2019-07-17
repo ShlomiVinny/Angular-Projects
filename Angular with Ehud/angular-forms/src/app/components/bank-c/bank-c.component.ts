@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl, Validators } from '@angular/forms';
   templateUrl: './bank-c.component.html',
   styleUrls: ['./bank-c.component.css']
 })
-export class BankCComponent implements OnInit {
+export class BankCComponent implements OnInit, OnDestroy {
 
   minAmount = new FormControl('');
   maxAmount = new FormControl('');
@@ -18,6 +18,10 @@ export class BankCComponent implements OnInit {
     this.minAmount.setValidators([
       Validators.required,
       Validators.min(100)]);
+      console.log('bank c init');
+  }
+  ngOnDestroy(){
+    console.log('bank c destroy');
   }
 
   executeBalanceRequest(): void {

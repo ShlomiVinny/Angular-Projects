@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import { FormControl,  Validators, ValidatorFn, ValidationErrors, FormGroup } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl,  Validators, ValidatorFn, ValidationErrors, FormGroup } fr
   templateUrl: './bank-d.component.html',
   styleUrls: ['./bank-d.component.css']
 })
-export class BankDComponent implements OnInit {
+export class BankDComponent implements OnInit, OnDestroy {
 
   thecolor = 'red';
   balanceInfoForm = new FormGroup({
@@ -20,7 +20,7 @@ export class BankDComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log('bank d init');
     console.log('from ngOnInit of component');
 
     this.balanceInfoForm.controls.minAmount.setValidators([
@@ -32,6 +32,9 @@ export class BankDComponent implements OnInit {
       Validators.max(100000)]);
 
     this.balanceInfoForm.setValidators(this.myCustomValidator());
+  }
+  ngOnDestroy(){
+    console.log('bank d destroy');
   }
 
   myCustomValidator(): ValidatorFn | ValidatorFn[] {
