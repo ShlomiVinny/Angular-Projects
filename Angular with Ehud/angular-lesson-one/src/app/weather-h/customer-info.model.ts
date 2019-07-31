@@ -1,4 +1,4 @@
 export class CustomerInfo {
-  firstName: string;
-  age: 50;
+  firstName: String;
+  age: Number;
 }
