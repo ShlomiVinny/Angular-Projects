@@ -1,4 +1,8 @@
-# AngularWithAlon
+# AngularWithAlon by Vinny
+
+This project involves calling https://jsonplaceholder.typicode.com API to get the right JSON, depending on the url.
+I tried to use different techniques for different components, to produce a diverse project even though it is a very simple one.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.1.
 
