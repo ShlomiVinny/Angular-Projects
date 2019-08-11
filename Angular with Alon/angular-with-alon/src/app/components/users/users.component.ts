@@ -21,6 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   selectedUserName: string;
   selectedUserId: number;
+  userSelected: boolean;
   postId: number;
 
   constructor(private dal: DalService, private router: Router) {
@@ -45,9 +46,10 @@ export class UsersComponent implements OnInit, OnDestroy {
 
         this.selectedUserId = userId;
         console.log("Select user id: ", userId);
-
+        this.userSelected = true;
       } else if (this.selectedUserId === userId) {
         this.selectedUserId = null;
+        this.userSelected = false;
         console.log("Deselect user id: ", userId);
       }
     }
