@@ -1,0 +1,27 @@
+<div class="text-center" *ngFor="let user of userData">
+    <div class="card-header">
+        <h1>{{user.id}}</h1>
+        <p>{{user.name | uppercase}}</p>
+
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Personal Info:</h5>
+        <p>{{user.phone}}</p>
+        <p>{{user.website}}</p>
+
+        <h5 class="card-title">Address:</h5>
+        <p class="card-text">{{user.address.street}}</p>
+        <p class="card-text">{{user.address.suite}}</p>
+        <p class="card-text">{{user.address.city}}</p>
+        <p class="card-text">{{user.address.zipcode}}</p>
+
+        <h5 class="card-title">Geo Location:</h5>
+        <p class="card-text">{{user.address.geo.lat}}</p>
+        <p class="card-text">{{user.address.geo.lng}}</p>
+
+        <h5 class="card-title">Company:</h5>
+        <p class="card-text">{{user.company.name}}</p>
+        <p class="card-text">{{user.company.catchPhrase}}</p>
+        <p class="card-text">{{user.company.bs}}</p>
+    </div>
+</div>

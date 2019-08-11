@@ -1,0 +1,21 @@
+.card-body{
+    border-bottom: 3px solid black;
+    padding: 5vh 0 5vh 0;
+}
+
+.card{
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.post{
+    margin-top: 56px;
+    border-radius: 5px;
+    position: fixed;
+    top: 0;
+    left: 40vw;
+    width: 30vw;
+    max-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+}

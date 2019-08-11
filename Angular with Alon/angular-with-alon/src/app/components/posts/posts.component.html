@@ -1,0 +1,20 @@
+<div class="post">
+    <div class="card text-center">
+        <legend>Posts: </legend>
+        <div *ngFor="let post of postData">
+            <div class="card-header">
+
+                <h4>Posted By: {{userName}} </h4>
+                <h6>Post ID: {{post.id}}</h6>
+                <h5>Title: {{post.title}}</h5>
+                <button (click)="showPostBodyMethod(post.id)">{{!showPostBodyArray.includes(post.id)? 'Show Post' : 'Hide Post'}}</button>
+            </div>
+            
+            <div class="card-body" *ngIf="showPostBodyArray.includes(post.id)" (click)="showPostBodyMethod(post.id)">
+                <p>{{post.body}}</p>
+                <button (click)="showComments(post.id, $event)">{{currentlyShownCommentsForPostId!==post.id ? 'Show Comments' : 'Hide Comments'}}</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

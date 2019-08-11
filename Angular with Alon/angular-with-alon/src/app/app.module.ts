@@ -1,12 +1,19 @@
+// modules, services etc. //
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
-import { TasksComponent } from './tasks/tasks.component';
 import { DalService } from './services/dal-service.service';
+import { UserDetailsService } from './services/user-details.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+
+// components //
+import { AppComponent } from './app.component';
+import { UsersComponent } from './components/users/users.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 
 
@@ -14,16 +21,22 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     UsersComponent,
-    TasksComponent
+    TasksComponent,
+    PostsComponent,
+    CommentsComponent,
+    UserDetailsComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    DalService
+    DalService,
+    UserDetailsService
   ],
   bootstrap: [AppComponent]
 })

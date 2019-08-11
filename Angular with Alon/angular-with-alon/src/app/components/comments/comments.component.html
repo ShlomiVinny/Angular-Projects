@@ -1,0 +1,17 @@
+<div class="comment">
+    <div class="card text-center">
+        <legend>Comments: </legend>
+        <div *ngFor="let comment of commentData">
+            <div class="card-header">
+
+                <h4>Posted By: {{userName}} </h4>
+                <h5>Title: {{comment.name}}</h5>
+
+            </div>
+            <div class="card-body">
+                <p>{{comment.body}}</p>
+            </div>
+        </div>
+
+    </div>
+</div>

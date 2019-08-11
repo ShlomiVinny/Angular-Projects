@@ -1,0 +1,21 @@
+section{
+    display: flex;
+    flex-basis: 200px;
+    margin-bottom: 50px;
+}
+
+a{
+    margin: 20px;
+}
+
+.users{
+    overflow: scroll;
+    overflow-x: hidden;
+    position: absolute;
+    left: 0;
+    width: 10vw;
+    max-height: calc(100vh - 56px);
+    display: flex;
+    flex-direction: column;
+    
+}
