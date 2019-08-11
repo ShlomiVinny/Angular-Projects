@@ -1,6 +1,7 @@
 <div class="post">
     <div class="card text-center">
         <legend>Posts: </legend>
+        <h4 *ngIf="!postData">No posts to show!</h4>
         <div *ngFor="let post of postData">
             <div class="card-header">
 

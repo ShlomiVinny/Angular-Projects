@@ -25,7 +25,6 @@ export class PostsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
 
-    this.getDataFromService();
   }
 
   ngOnChanges() {
@@ -43,6 +42,9 @@ export class PostsComponent implements OnInit, OnChanges {
       let query = '?userId=' + this.userId;
       let url = 'posts' + query;
       this.subscription = this.dal.getDataFromUrl(url).pipe(map(data => data.filter(task => task.userId === this.userId))).subscribe(data => this.postData = data)
+    }else{
+      this.postData = null;
+      console.log('UserId is null! Cant get data!');
     }
   }
 
@@ -67,7 +69,9 @@ export class PostsComponent implements OnInit, OnChanges {
       console.log('Added postId:', postId, 'to display array');
     } else {
       this.showPostBodyArray = this.showPostBodyArray.filter(value => value !== postId);
-      this.showComments(null, new Event(''));
+      if(this.currentlyShownCommentsForPostId === postId){
+         this.showComments(this.currentlyShownCommentsForPostId, new Event(''));
+      }
       console.log('Successfuly removed:', postId, 'from display array');
     }
 

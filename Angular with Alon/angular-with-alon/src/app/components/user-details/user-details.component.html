@@ -1,11 +1,11 @@
 <div class="text-center" *ngFor="let user of userData">
     <div class="card-header">
         <h1>{{user.id}}</h1>
-        <p>{{user.name | uppercase}}</p>
+        <h4 class="text-danger">{{user.name | uppercase}}</h4>
 
     </div>
     <div class="card-body">
-        <h5 class="card-title">Personal Info:</h5>
+        <h5 class="card-title text-info">Personal Info:</h5>
         <p>{{user.phone}}</p>
         <p>{{user.website}}</p>
 

@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DalService } from 'src/app/services/dal-service.service';
 import { map } from 'rxjs/operators';
 import { isNumber } from 'util';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 
 
@@ -21,7 +21,7 @@ export class TasksComponent implements OnInit, OnChanges {
   displayTask: boolean;
   showChangeTitle = false;
   index: number;
-  taskData: Array<any>;
+  taskData: Observable<Array<object>>;
   subscription: Subscription;
 
 
@@ -36,8 +36,7 @@ export class TasksComponent implements OnInit, OnChanges {
 
   constructor(private dal: DalService) { }
   ngOnInit() {
-    console.log(this.userId);
-    this.getDataFromService();
+   
   }
 
   ngOnChanges() {
@@ -54,7 +53,11 @@ export class TasksComponent implements OnInit, OnChanges {
       console.log('getting taskData from service');
       let query = '?userId=' + this.userId;
       let url = 'todos' + query;
-      this.subscription = this.dal.getDataFromUrl(url).pipe(map(data => data.filter(task => task.userId === this.userId))).subscribe(data => this.taskData = data)
+      this.subscription = this.dal.getDataFromUrl(url).subscribe(data => {this.taskData = data, console.dir(data)})
+      // .pipe(map(data => data.filter(task => task.userId === this.userId)))
+    }else{
+      this.taskData = null;
+      console.log('UserId is null! Cant get data!');
     }
   }
 
@@ -68,25 +71,25 @@ export class TasksComponent implements OnInit, OnChanges {
     }
   }
 
-  changeStatus(taskId: number) {
-    if (this.taskData[taskId - 1]) {
-      this.taskData[taskId - 1].completed = !this.taskData[taskId - 1].completed;
-      console.log('change completed status for taskId: ', taskId);
-    } else {
-      console.log('Cannot change status for taskId: ', taskId, 'since it doesnt exist!');
+  
+  changeStatus(taskIndex: number) {
+    console.log('change status for taskIndex: ', taskIndex);
+    
+    if(isNumber(taskIndex)){
+      this.taskData[taskIndex].completed = !this.taskData[taskIndex].completed;
     }
   }
 
-  changeTitle(taskId: number) {
-    if (this.taskData[taskId - 1]) {
+  changeTitle(taskIndex: number) {
+    if (isNumber(taskIndex)) {
       let value = this.titleForm.controls.titleControl.value;
-      console.log('value: ', value, 'taskId: ', taskId);
-      this.taskData[taskId - 1].title = value; //taskData is an array and expects an index, since indexes start from '0' and taskId's start from '1', we need to reduce it by '1';
+      console.log('value: ', value, 'taskId: ', taskIndex);
+      this.taskData[taskIndex].title = value; 
       this.titleForm.reset();
       this.showChangeTitle = false;
-      console.log('Successfuly changed title for taskId: ', taskId, '!')
+      console.log('Successfuly changed title for taskIndex: ', taskIndex, '!')
     } else {
-      console.log('Cannot change title for taskId: ', taskId, 'since it doesnt exist!')
+      console.log('Cannot change title for taskIndex: ', taskIndex, 'since it doesnt exist!')
     }
   }
 

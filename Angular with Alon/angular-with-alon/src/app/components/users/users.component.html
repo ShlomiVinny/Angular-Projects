@@ -5,10 +5,11 @@
         <div class="card-header" (click)="selectUser(user.id)">
             <h1>{{user.id}}</h1>
             <p>{{user.name | uppercase}}</p>
-            
+            <p class="text-success" *ngIf="this.selectedUserId!==user.id">v</p>
+            <p class="text-danger" *ngIf="this.selectedUserId===user.id">^</p>
         </div>
         <div class="card-body" *ngIf="this.selectedUserId===user.id" (click)="navigateToUserDetails(user.id)">
-            <h6>More information!</h6>
+            <h6 class="text-info">Click here for more info!</h6>
         </div>
     </div>
 </div>

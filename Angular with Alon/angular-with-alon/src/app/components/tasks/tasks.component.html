@@ -1,7 +1,9 @@
 <div class="task">
     <div class="card text-center">
         <legend>Tasks: </legend>
-        <div *ngFor="let task of taskData">
+        <h4 *ngIf="!taskData">No tasks to show!</h4>
+        <h3 *ngIf="!taskData" class="text-primary">Choose a user from the list to display releavant tasks and posts!</h3>
+        <div *ngFor="let task of taskData; index as index">
 
             <div class="card-header">
 
@@ -10,20 +12,17 @@
                 <h5>Title: {{task.title}}</h5>
 
                 <button (click)="showChangeTitle=!showChangeTitle" *ngIf="!showChangeTitle">Change Title</button>
-                <form [formGroup]="titleForm" (ngSubmit)="changeTitle(task.id)">
+                <form [formGroup]="titleForm" (ngSubmit)="changeTitle(index)">
                     <div class="container" *ngIf="showChangeTitle">
                         <input id="title" type="text" formControlName="titleControl" placeholder="Enter a new title">
                         <button type="submit">Submit</button>
                     </div>
                 </form>
-
             </div>
-
             <div class="card-body">
-
                 <h5>Status: {{task.completed===false ? 'Uncompleted' : 'Completed'}}</h5>
                 <button
-                    (click)="changeStatus(task.id)">{{task.completed===false ? 'Set as Completed' : 'Set As Uncompleted'}}</button>
+                    (click)="changeStatus(index)">{{task.completed===false ? 'Set as Completed' : 'Set As Uncompleted'}}</button>
             </div>
         </div>
     </div>

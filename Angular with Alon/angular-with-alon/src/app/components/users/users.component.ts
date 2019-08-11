@@ -17,8 +17,7 @@ import { Router } from '@angular/router';
 export class UsersComponent implements OnInit, OnDestroy {
 
 
-  userData: Observable<any>;
-  taskData: Observable<any>;
+  userData: Observable<Array<object>>;
   subscription: Subscription;
   selectedUserName: string;
   selectedUserId: number;
@@ -48,11 +47,9 @@ export class UsersComponent implements OnInit, OnDestroy {
         console.log("Select user id: ", userId);
 
       } else if (this.selectedUserId === userId) {
-        this.selectedUserId = 0;
-        console.log("Unselect user id: ", userId);
+        this.selectedUserId = null;
+        console.log("Deselect user id: ", userId);
       }
-    } else {
-      console.log("userId is not a Number!! ");
     }
   }
 
@@ -70,7 +67,9 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   navigateToUserDetails(userId: number): void {
-    this.router.navigate(['/user-details'], { queryParams: { userId: userId } })
+    this.router.navigate(['/user-details'], { queryParams: { userId: userId } });
   }
+
+  
 
 }

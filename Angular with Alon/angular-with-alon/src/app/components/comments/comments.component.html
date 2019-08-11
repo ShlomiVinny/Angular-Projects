@@ -1,10 +1,16 @@
 <div class="comment">
     <div class="card text-center">
         <legend>Comments: </legend>
+        <div *ngIf="!showComments">
+            <h4>No comments to show!</h4>
+            <br>
+            <h6>Click on a post to display it, and then on "Show Comments" to display that posts' comments!</h6> 
+        </div>
+            
         <div *ngFor="let comment of commentData">
             <div class="card-header">
 
-                <h4>Posted By: {{userName}} </h4>
+                <h4>Comment By: {{userName}} </h4>
                 <h5>Title: {{comment.name}}</h5>
 
             </div>
