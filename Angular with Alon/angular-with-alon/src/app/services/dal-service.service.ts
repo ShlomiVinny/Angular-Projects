@@ -13,7 +13,7 @@ export class DalService {
   domain = "https://jsonplaceholder.typicode.com/";
 
   getDataFromUrl(url: string): Observable<any> {
-    console.log("fetch user data from url: ", url);
+    console.log("DAL SERVICE: Fetch data from url: ", url);
     return this.http.get(this.domain + url);
   }
 

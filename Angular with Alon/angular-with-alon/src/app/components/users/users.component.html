@@ -5,8 +5,8 @@
         <div class="card-header" (click)="selectUser(user.id)">
             <h1>{{user.id}}</h1>
             <p>{{user.name | uppercase}}</p>
-            <p class="text-success" *ngIf="this.selectedUserId!==user.id">v</p>
-            <p class="text-danger" *ngIf="this.selectedUserId===user.id">^</p>
+            <p class="text-success" *ngIf="this.selectedUserId!==user.id">More</p>
+            <p class="text-danger" *ngIf="this.selectedUserId===user.id">Close</p>
         </div>
         <div class="card-body" *ngIf="this.selectedUserId===user.id" (click)="navigateToUserDetails(user.id)">
             <h6 class="text-info">Click here for more info!</h6>
@@ -15,5 +15,5 @@
 </div>
 <app-tasks [userId]="this.selectedUserId" [userName]="this.selectedUserName"></app-tasks>
 <app-posts [userId]="this.selectedUserId" [userName]="this.selectedUserName"></app-posts>
-<app-comments [userSelected]="this.selectedUserId" [userName]="this.selectedUserName"></app-comments>
+<app-comments [userName]="this.selectedUserName"></app-comments>
         

@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DalService } from 'src/app/services/dal-service.service';
-import { map } from 'rxjs/operators';
 import { isNumber } from 'util';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 
 
@@ -21,7 +20,8 @@ export class TasksComponent implements OnInit, OnChanges {
   displayTask: boolean;
   showChangeTitle = false;
   index: number;
-  taskData: Observable<Array<object>>;
+  taskData: Array<any>;
+  currentTaskData: any;
   subscription: Subscription;
 
 
@@ -36,11 +36,13 @@ export class TasksComponent implements OnInit, OnChanges {
 
   constructor(private dal: DalService) { }
   ngOnInit() {
-   
+    this.getDataFromService();
   }
 
   ngOnChanges() {
-    this.getDataFromService();
+    console.log(this.titleForm.errors);
+    
+    this.filterDataByUserId()
   }
 
   ngOnDestroy() {
@@ -48,48 +50,53 @@ export class TasksComponent implements OnInit, OnChanges {
   }
 
 
-  getDataFromService() {
-    if (isNumber(this.userId)) {
-      console.log('getting taskData from service');
-      let query = '?userId=' + this.userId;
-      let url = 'todos' + query;
-      this.subscription = this.dal.getDataFromUrl(url).subscribe(data => {this.taskData = data, console.dir(data)})
-      // .pipe(map(data => data.filter(task => task.userId === this.userId)))
-    }else{
-      this.taskData = null;
-      console.log('UserId is null! Cant get data!');
-    }
+  getDataFromService(): void {
+
+    let url = 'todos';
+    this.subscription = this.dal.getDataFromUrl(url).subscribe(data => this.taskData = data);
+    // .pipe(map(data => data.filter(task => task.userId === this.userId))) 
   }
 
-  handleTaskClick(userId: number) {
-    if (this.displayTask) {
-      this.displayTask = false;
-      console.log(`hide tasks for userId: ${userId}`);
-    } else {
-      this.displayTask = true;
-      console.log(`show tasks for userId: ${userId}`);
-    }
-  }
 
-  
-  changeStatus(taskIndex: number) {
-    console.log('change status for taskIndex: ', taskIndex);
+  filterDataByUserId(): void {
+    console.log('Filtering task data');
     
-    if(isNumber(taskIndex)){
-      this.taskData[taskIndex].completed = !this.taskData[taskIndex].completed;
+    if (isNumber(this.userId)) {
+      this.currentTaskData = this.taskData.filter(value => this.userId === value.userId);
+    } else {
+      this.currentTaskData = null;
     }
   }
 
-  changeTitle(taskIndex: number) {
-    if (isNumber(taskIndex)) {
+
+  changeStatus(taskId: number) {
+    console.log('change status for taskId: ', taskId);
+
+    if (isNumber(taskId) && this.titleForm.errors!==null) {
+      this.taskData.forEach(task => {
+        if(task.id===taskId){
+          task.completed = !task.completed;
+        }
+      })
+
+    }
+  }
+
+  changeTitle(taskId: number) {
+    if (isNumber(taskId)) {
       let value = this.titleForm.controls.titleControl.value;
-      console.log('value: ', value, 'taskId: ', taskIndex);
-      this.taskData[taskIndex].title = value; 
+      console.log('value: ', value, 'taskId: ', taskId);
+      this.taskData.forEach(task => {
+        if(task.id===taskId){
+          task.title = value;
+        }
+      })
+      
       this.titleForm.reset();
       this.showChangeTitle = false;
-      console.log('Successfuly changed title for taskIndex: ', taskIndex, '!')
+      console.log('Successfuly changed title for taskId: ', taskId, '!')
     } else {
-      console.log('Cannot change title for taskIndex: ', taskIndex, 'since it doesnt exist!')
+      console.log('Cannot change title for taskId: ', taskId, 'since it doesnt exist!')
     }
   }
 

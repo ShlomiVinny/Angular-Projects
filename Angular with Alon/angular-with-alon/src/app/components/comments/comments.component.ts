@@ -19,21 +19,16 @@ export class CommentsComponent implements OnInit, OnDestroy, OnChanges {
   subscription2: Subscription;
 
   @Input() userName: string;
-  @Input() userSelected: boolean;
 
   constructor(private dal: DalService, private userDetailsService: UserDetailsService) { }
 
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.getPostIdFromService();
+  }
 
   ngOnChanges() {
-    if (this.userSelected) {
-      this.getPostIdFromService();
-    } else {
-      this.commentData = null;
-      this.showComments = false;
-
-    }
+   
   }
 
   ngOnDestroy() {

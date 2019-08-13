@@ -1,14 +1,14 @@
 <div class="post">
     <div class="card text-center">
         <legend>Posts: </legend>
-        <h4 *ngIf="!postData">No posts to show!</h4>
-        <div *ngFor="let post of postData">
-            <div class="card-header">
+        <h4 *ngIf="!currentPostData">No posts to show!</h4>
+        <div *ngFor="let post of currentPostData">
+            <div class="card-header" (click)="showPostBodyMethod(post.id)">
 
                 <h4>Posted By: {{userName}} </h4>
                 <h6>Post ID: {{post.id}}</h6>
                 <h5>Title: {{post.title}}</h5>
-                <button (click)="showPostBodyMethod(post.id)">{{!showPostBodyArray.includes(post.id)? 'Show Post' : 'Hide Post'}}</button>
+                <p class="text-primary">{{!showPostBodyArray.includes(post.id)? 'Click To Show Post' : 'Click To Hide Post'}}</p>
             </div>
             
             <div class="card-body" *ngIf="showPostBodyArray.includes(post.id)" (click)="showPostBodyMethod(post.id)">

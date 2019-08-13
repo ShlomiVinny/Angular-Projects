@@ -43,7 +43,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       if (this.selectedUserId !== userId) {
         this.getUserNameById(userId);
         console.log('selected user name: ', this.selectedUserName);
-
         this.selectedUserId = userId;
         console.log("Select user id: ", userId);
         this.userSelected = true;

@@ -6,20 +6,19 @@
     </div>
     <div class="card-body">
         <h5 class="card-title text-info">Personal Info:</h5>
-        <p>{{user.phone}}</p>
-        <p>{{user.website}}</p>
+        <p>Phone: {{user.phone}}</p>
+        <p>Site: {{user.website}}</p>
+        <h5 class="card-title text-info">Address:</h5>
+        <p class="card-text">Street: {{user.address.street}}</p>
+        <p class="card-text">Suite: {{user.address.suite}}</p>
+        <p class="card-text">City: {{user.address.city}}</p>
+        <p class="card-text">Zipcode: {{user.address.zipcode}}</p>
 
-        <h5 class="card-title">Address:</h5>
-        <p class="card-text">{{user.address.street}}</p>
-        <p class="card-text">{{user.address.suite}}</p>
-        <p class="card-text">{{user.address.city}}</p>
-        <p class="card-text">{{user.address.zipcode}}</p>
+        <h5 class="card-title text-info">Geo Location:</h5>
+        <p class="card-text">Latitude: {{user.address.geo.lat}}</p>
+        <p class="card-text">Longitude: {{user.address.geo.lng}}</p>
 
-        <h5 class="card-title">Geo Location:</h5>
-        <p class="card-text">{{user.address.geo.lat}}</p>
-        <p class="card-text">{{user.address.geo.lng}}</p>
-
-        <h5 class="card-title">Company:</h5>
+        <h5 class="card-title text-info">Company:</h5>
         <p class="card-text">{{user.company.name}}</p>
         <p class="card-text">{{user.company.catchPhrase}}</p>
         <p class="card-text">{{user.company.bs}}</p>

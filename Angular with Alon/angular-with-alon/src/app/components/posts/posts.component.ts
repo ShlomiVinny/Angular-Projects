@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { DalService } from 'src/app/services/dal-service.service';
 import { map } from 'rxjs/operators';
 import { isNumber } from 'util';
 import { Subscription } from 'rxjs';
 import { UserDetailsService } from 'src/app/services/user-details.service';
+
 
 @Component({
   selector: 'app-posts',
@@ -13,6 +14,7 @@ import { UserDetailsService } from 'src/app/services/user-details.service';
 export class PostsComponent implements OnInit, OnChanges {
 
   postData: Array<any>;
+  currentPostData: any;
   currentlyShownCommentsForPostId: number;
   showPostBodyArray: Array<number> = [];
   subscription: Subscription;
@@ -24,11 +26,11 @@ export class PostsComponent implements OnInit, OnChanges {
   constructor(private dal: DalService, private userDetailsService: UserDetailsService) { }
 
   ngOnInit() {
-
+    this.getDataFromService();
   }
 
   ngOnChanges() {
-    this.getDataFromService();
+    this.filterDataByUserId()
   }
 
   ngOnDestroy() {
@@ -37,17 +39,20 @@ export class PostsComponent implements OnInit, OnChanges {
 
 
   getDataFromService(): void {
-    if (isNumber(this.userId)) {
-      console.log('getting post data from service');
-      let query = '?userId=' + this.userId;
-      let url = 'posts' + query;
-      this.subscription = this.dal.getDataFromUrl(url).pipe(map(data => data.filter(task => task.userId === this.userId))).subscribe(data => this.postData = data)
-    }else{
-      this.postData = null;
-      console.log('UserId is null! Cant get data!');
-    }
+     
+      let url = 'posts';
+      this.subscription = this.dal.getDataFromUrl(url).subscribe(data => this.postData = data);
+      // .pipe(map(data => data.filter(task => task.userId === this.userId)))
   }
 
+  filterDataByUserId(): void{
+    console.log('Filtering post data');
+    if(isNumber(this.userId)){
+      this.currentPostData = this.postData.filter(value => this.userId===value.userId);
+    }else{
+      this.currentPostData = null;
+    }
+  }
 
   showComments(postId: number, $event: Event): void {
     $event.preventDefault();
@@ -77,6 +82,7 @@ export class PostsComponent implements OnInit, OnChanges {
 
   }
 
+ 
 
 
 
