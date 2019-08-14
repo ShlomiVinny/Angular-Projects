@@ -11,9 +11,9 @@
                 <h6>Task ID: {{task.id}}</h6>
                 <h5>Title: {{task.title}}</h5>
 
-                <button (click)="showChangeTitle=!showChangeTitle" *ngIf="!showChangeTitle">Change Title</button>
+                <button (click)="showChangeTitleForId(task.id)" *ngIf="!showChangeTitleArray.includes(task.id)">Change Title</button>
                 <form [formGroup]="titleForm" (ngSubmit)="changeTitle(task.id)">
-                    <div class="container" *ngIf="showChangeTitle">
+                    <div class="container" *ngIf="showChangeTitleArray.includes(task.id)">
                         <input id="title" type="text" formControlName="titleControl" placeholder="Enter a new title">
                         <button type="submit">Submit</button>
                     </div>

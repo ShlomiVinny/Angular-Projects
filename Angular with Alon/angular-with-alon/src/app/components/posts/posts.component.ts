@@ -39,17 +39,17 @@ export class PostsComponent implements OnInit, OnChanges {
 
 
   getDataFromService(): void {
-     
-      let url = 'posts';
-      this.subscription = this.dal.getDataFromUrl(url).subscribe(data => this.postData = data);
-      // .pipe(map(data => data.filter(task => task.userId === this.userId)))
+
+    let url = 'posts';
+    this.subscription = this.dal.getDataFromUrl(url).subscribe(data => this.postData = data);
+    // .pipe(map(data => data.filter(task => task.userId === this.userId)))
   }
 
-  filterDataByUserId(): void{
+  filterDataByUserId(): void {
     console.log('Filtering post data');
-    if(isNumber(this.userId)){
-      this.currentPostData = this.postData.filter(value => this.userId===value.userId);
-    }else{
+    if (isNumber(this.userId)) {
+      this.currentPostData = this.postData.filter(value => this.userId === value.userId);
+    } else {
       this.currentPostData = null;
     }
   }
@@ -57,14 +57,14 @@ export class PostsComponent implements OnInit, OnChanges {
   showComments(postId: number, $event: Event): void {
     $event.preventDefault();
     $event.stopImmediatePropagation();
-    
+
     if (this.currentlyShownCommentsForPostId !== postId) {
       this.userDetailsService.sendPostIdToComments(postId);
       this.currentlyShownCommentsForPostId = postId;
     } else {
       this.userDetailsService.sendPostIdToComments(null);
       this.currentlyShownCommentsForPostId = null;
-    } 
+    }
   }
 
 
@@ -73,16 +73,20 @@ export class PostsComponent implements OnInit, OnChanges {
       this.showPostBodyArray.push(postId);
       console.log('Added postId:', postId, 'to display array');
     } else {
-      this.showPostBodyArray = this.showPostBodyArray.filter(value => value !== postId);
-      if(this.currentlyShownCommentsForPostId === postId){
-         this.showComments(this.currentlyShownCommentsForPostId, new Event(''));
+      this.removeIdFromShowPostBodyArray(postId);
+      if (this.currentlyShownCommentsForPostId === postId) {
+        this.showComments(this.currentlyShownCommentsForPostId, new Event(''));
       }
       console.log('Successfuly removed:', postId, 'from display array');
     }
 
   }
 
- 
+  removeIdFromShowPostBodyArray(postId: number): void {
+    this.showPostBodyArray = this.showPostBodyArray.filter(value => value !== postId);
+  }
+
+
 
 
 

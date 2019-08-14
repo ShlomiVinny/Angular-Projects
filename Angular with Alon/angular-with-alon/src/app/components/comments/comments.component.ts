@@ -44,7 +44,8 @@ export class CommentsComponent implements OnInit, OnDestroy, OnChanges {
       console.log('getting comment data by postId from service');
       let query = '?postId=' + postId;
       let url = 'comments' + query;
-      this.subscription = this.dal.getDataFromUrl(url).pipe(map(data => data.filter(task => task.postId === postId))).subscribe(data => { this.commentData = data, this.showComments = true; });
+      this.subscription = this.dal.getDataFromUrl(url).pipe(map(data => data.filter(task => task.postId === postId)))
+      .subscribe(data => { this.commentData = data, this.showComments = true; });
     }
   }
 

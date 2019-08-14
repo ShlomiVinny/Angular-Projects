@@ -18,10 +18,10 @@ export class TasksComponent implements OnInit, OnChanges {
 
 
   displayTask: boolean;
-  showChangeTitle = false;
+  showChangeTitleArray: Array<number> = [];
   index: number;
-  taskData: Array<any>;
-  currentTaskData: any;
+  taskData: Array<object>;
+  currentTaskData: object;
   subscription: Subscription;
 
 
@@ -40,8 +40,6 @@ export class TasksComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.titleForm.errors);
-    
     this.filterDataByUserId()
   }
 
@@ -60,44 +58,51 @@ export class TasksComponent implements OnInit, OnChanges {
 
   filterDataByUserId(): void {
     console.log('Filtering task data');
-    
+
     if (isNumber(this.userId)) {
-      this.currentTaskData = this.taskData.filter(value => this.userId === value.userId);
+      this.currentTaskData = this.taskData.filter(value => this.userId === value['userId']);
     } else {
       this.currentTaskData = null;
     }
   }
 
 
-  changeStatus(taskId: number) {
+  changeStatus(taskId: number): void {
     console.log('change status for taskId: ', taskId);
 
-    if (isNumber(taskId) && this.titleForm.errors!==null) {
+    if (isNumber(taskId)) {
       this.taskData.forEach(task => {
-        if(task.id===taskId){
-          task.completed = !task.completed;
+        if (task['id'] === taskId) {
+          task['completed'] = !task['completed'];
         }
       })
 
     }
   }
 
-  changeTitle(taskId: number) {
+
+  changeTitle(taskId: number): void {
     if (isNumber(taskId)) {
       let value = this.titleForm.controls.titleControl.value;
-      console.log('value: ', value, 'taskId: ', taskId);
       this.taskData.forEach(task => {
-        if(task.id===taskId){
-          task.title = value;
+        if (task['id'] === taskId) {
+          task['title'] = value;
         }
       })
-      
       this.titleForm.reset();
-      this.showChangeTitle = false;
+      this.removeIdFromChangeTitleArray(taskId);
       console.log('Successfuly changed title for taskId: ', taskId, '!')
     } else {
       console.log('Cannot change title for taskId: ', taskId, 'since it doesnt exist!')
     }
+  }
+
+  showChangeTitleForId(taskId: number): void {
+    this.showChangeTitleArray.push(taskId);
+  }
+
+  removeIdFromChangeTitleArray(taskId: number): void {
+    this.showChangeTitleArray = this.showChangeTitleArray.filter(id => id !== taskId);
   }
 
 
