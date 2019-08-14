@@ -1,0 +1,15 @@
+<fieldset>
+    <legend>Order Details:</legend>
+    <form [formGroup]="orderForm" (ngSubmit)="getOrderFormValues()" >
+        <label>Name:</label>
+        <input formControlName="name" type="text" placeholder="Enter your name">
+        <br>
+        <label>Phone:</label>
+        <input formControlName="phone" type="text" placeholder="Enter your phone number">
+        <br>
+        <label>Email:</label>
+        <input formControlName="email" type="text" placeholder="Enter your Email">
+        <br>
+        <button [disabled]='!orderForm.valid'>Submit</button>
+    </form>
+</fieldset>

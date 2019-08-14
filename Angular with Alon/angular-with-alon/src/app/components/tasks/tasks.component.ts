@@ -43,6 +43,7 @@ export class TasksComponent implements OnInit, OnChanges {
     this.filterDataByUserId()
   }
 
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
@@ -105,8 +106,7 @@ export class TasksComponent implements OnInit, OnChanges {
     this.showChangeTitleArray = this.showChangeTitleArray.filter(id => id !== taskId);
   }
 
-
-
+  
 
 
 

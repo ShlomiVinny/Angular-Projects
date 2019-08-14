@@ -1,0 +1,15 @@
+<fieldset>
+    <legend>Shipping Details:</legend>
+    <form [formGroup]="shippingForm" (ngSubmit)="getShippingFormValues()">
+        <label>City:</label>
+        <input formControlName="city" type="text" placeholder="Enter your City">
+        <br>
+        <label>Address:</label>
+        <input formControlName="address" type="text" placeholder="Enter your Address">
+        <br>
+        <label>Zipcode:</label>
+        <input formControlName="zipcode" type="text" placeholder="Enter your Zipcode">
+        <br>
+        <button [disabled]="!shippingForm.valid">Submit</button>
+    </form>
+</fieldset>

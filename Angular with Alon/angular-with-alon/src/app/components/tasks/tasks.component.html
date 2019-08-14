@@ -14,8 +14,9 @@
                 <button (click)="showChangeTitleForId(task.id)" *ngIf="!showChangeTitleArray.includes(task.id)">Change Title</button>
                 <form [formGroup]="titleForm" (ngSubmit)="changeTitle(task.id)">
                     <div class="container" *ngIf="showChangeTitleArray.includes(task.id)">
-                        <input id="title" type="text" formControlName="titleControl" placeholder="Enter a new title">
-                        <button type="submit">Submit</button>
+                        <input id="title" minlength="3" #changeName  (keyup)="titleForm.valid"
+                        type="text" formControlName="titleControl" placeholder="Enter a new title" required>
+                        <button [disabled]="titleForm.valid ? false : true"> Submit</button>
                     </div>
                 </form>
             </div>
