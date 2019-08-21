@@ -84,6 +84,7 @@ export class TasksComponent implements OnInit, OnChanges {
 
   changeTitle(taskId: number): void {
     if (isNumber(taskId)) {
+      this.showChangeTitleForId(taskId);
       let value = this.titleForm.controls.titleControl.value;
       this.taskData.forEach(task => {
         if (task['id'] === taskId) {
