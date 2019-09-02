@@ -1,0 +1,117 @@
+#load-ammo {
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    align-items: center;
+    color: white;
+    z-index: 6;
+    position: fixed;
+    min-height: 420px;
+    min-width: 720px;
+    top: 220px;
+    left: 420px;
+    margin: auto;
+    padding: 10px;
+    background: black;
+    border: 1px gray solid;
+    display: flex;
+    flex-direction: column;
+}
+
+#drag-ammo-section {
+    padding: 10px;
+    margin: 10px;
+    align-items: center;
+    background: rgb(51, 51, 51);
+    display: flex;
+    flex-direction: row;
+}
+
+#top-section {
+    position: relative;
+    height: 128px;
+    padding: 10px;
+    margin: 10px;
+    background: rgb(51, 51, 51);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#top-section-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background: black;
+    color: white;
+    margin: auto;
+    padding: 5px;
+    max-width: 150px;
+}
+
+.functions-container {
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.svg-container{
+    position: relative;
+}
+
+.image-container{
+    z-index: 2;
+}
+
+#functions-wrapper {
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.functions {
+    margin: 10px;
+}
+
+#slots-wrapper {
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+#ammo-grid-container {
+    position: relative;
+    border-left: 1px gray solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+#mode{
+    background: black;
+    color: white;
+}
+
+option{
+    background: black;
+    color: white;
+}
+select{
+    background: black;
+    color: white;
+}
+.amount {
+    background: black;
+    color: white;
+    width: 42px;
+}

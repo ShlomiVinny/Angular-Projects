@@ -1,0 +1,16 @@
+<div *ngIf="display" id="context-menu" [style.top.px]="offsetY" [style.left.px]="offsetX">
+
+    <p>Inspect</p>
+
+    <p id="ammo-insure" *ngIf="elementType === 'ammo'">Insure</p>
+
+    <p *ngIf="elementType !== 'ammo'">Insure</p>
+    <p *ngIf="elementType === 'mag'" (click)="displayLoadAmmo()">Load Ammo</p>
+    <p *ngIf="elementType === 'mag'">Unload Ammo</p>
+    <p *ngIf="elementType === 'mag'">Install</p>
+
+    <p>Filter By Item</p>
+    <p>Linked Search</p>
+    <p>Required Search</p>
+    <p>Discard</p>
+</div>

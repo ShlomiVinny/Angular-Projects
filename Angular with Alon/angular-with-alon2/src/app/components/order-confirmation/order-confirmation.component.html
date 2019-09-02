@@ -1,16 +1,27 @@
-<div>
+<div class="card text-center">
+  <div class="card-header">
+        Order confirmation:
+  </div>
 
-    <fieldset>
-        <legend>Order confirmation:</legend>
-        <p>Name: {{data.name}}</p>
-        <p>Address: {{data.address}}</p>
-        <p>City: {{data.city}}</p>
-        <p>Zipcode: {{data.zipcode}}</p>
-        <p> Email: {{data.email}}</p>
-        <p>Phone: {{data.phone}}</p>
-        
+  <div class="card-body" *ngIf="data">
+    <h5 class="card-title">Name: {{data.name}}</h5>
+    <p class="card-text">Address: {{data.address}}</p>
+        <p class="card-text">City: {{data.city}}</p>
+        <p class="card-text">Zipcode: {{data.zipcode}}</p>
+        <p class="card-text"> Email: {{data.email}}</p>
+        <p class="card-text">Phone: {{data.phone}}</p>
+  </div>
 
-    </fieldset>
+  <div class="card-body" *ngIf="!data">
+      <h1 class="card-title text-danger">No Information!</h1>
+  </div>
 
+
+  <div class="card-footer text-muted">
+   Thank you for choosing to purchase through our app, we have a 100% discount for you!
+  </div>
 
 </div>
+    
+
+

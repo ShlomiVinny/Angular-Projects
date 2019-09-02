@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { OrderConfirmationService } from 'src/app/services/order-confirmation.service';
-import { Route } from '@angular/compiler/src/core';
+
 
 @Component({
   selector: 'app-shipping-details',
@@ -15,10 +15,11 @@ export class ShippingDetailsComponent implements OnInit, OnDestroy {
 
   city: string;
   address: string;
-  zipcode: string;
+  zipcode: number;
   params: object;
   queryParamSubscription: Subscription;
   data: object;
+
 
 
   shippingForm = new FormGroup({
@@ -29,10 +30,13 @@ export class ShippingDetailsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
+    
+    
+
     this.getQueryParams();
     if (this.params['name'] === "" || this.params['phone'] === "" || this.params['email'] === "") {
       this.navigateTo('orderDetails');
-    } 
+    }
   }
 
   ngOnDestroy() {
@@ -46,10 +50,12 @@ export class ShippingDetailsComponent implements OnInit, OnDestroy {
     this.setValues(city, address, zipcode)
   }
 
-  setValues(city: string, address: string, zipcode: string): void {
+  setValues(city: string, address: string, zipcode: number): void {
     this.city = city;
     this.address = address;
     this.zipcode = zipcode;
+
+
 
     this.sendDataToService();
   }
@@ -68,7 +74,7 @@ export class ShippingDetailsComponent implements OnInit, OnDestroy {
 
     this.navigateTo('orderConfirmation');
 
-
+    
 
 
   }

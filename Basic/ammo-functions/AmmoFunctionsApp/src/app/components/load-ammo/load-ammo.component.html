@@ -1,0 +1,90 @@
+<div cdkDrag *ngIf="display" id="load-ammo" [style.position]="windowPosition" [style.top.px]="windowTop"
+  [style.left.px]="windowLeft" (cdkDrag)="handleWindowDrag($event)">
+
+  <button cdkDragDisabled (click)="hideLoadAmmo()" [style.marginTop.px]="margin">Close</button>
+
+  Available Magazines:
+
+  <div cdkDragDisabled id="top-section">
+    <!-- draw mag -->
+    <div *ngFor="let style of styleArray" class="{{style.element}}-container" id="{{style.element}}-container"
+      [style.position]="relative" [style.top.px]="style.container.top" [style.left.px]="style.container.left">
+      <img [style.position]="absolute" [style.top.px]="style.top" [style.left.px]="style.left"
+        alt="{{style.element}}" [src]="style.src">
+
+    </div>
+  </div>
+
+  Available Ammo:
+
+  <div id="drag-ammo-section">
+
+    <div id="slots-wrapper">
+      <div *ngFor="let slot of ammoSlots" class="functions-container" id="functions-container{{slot}}">
+        <div id="functions-wrapper">
+          <div class="functions" id="mode{{slot}}">
+            <label for="mode">Mode:</label>
+            <select name="modeSelect" id="mode{{slot}}" (click)="preventDefaults($event)">
+              <option value="first">First</option>
+              <option value="every">Every</option>
+              <option value="last">Last</option>
+            </select>
+          </div>
+
+          <div class="functions" id="amount{{slot}}">
+            <label for="mode">Amount:</label>
+            <input class="amount" id="amount{{slot}}" type="number" (keyup)="handleNewValue($event)">
+          </div>
+        </div>
+
+        <div class="svg-container" id="svg{{slot}}" cdkDropList (cdkDropListDropped)="dragEndRect($event)" [cdkDropListData]="svg+slot">
+          <div cdkDrag *ngFor="let style of svg1" class="image-container" id="{{style.element}}"
+        (cdkDragStarted)="setDraggedElement($event)" 
+        (cdkDragEnded)="dragEnd($event)"
+        [style.position]="style.container.position" [style.top.px]="style.container.top"
+        [style.left.px]="style.container.left">
+
+        <img [style.position]="style.position" [style.top.px]="style.top" [style.left.px]="style.left"
+          id="{{style.element}}" alt="{{style.element}}" [src]="style.src">
+
+        <span *ngIf="style.span" [style.position]="style.position" [style.top.px]="style.span.top"
+          [style.left.px]="style.span.left" [style.color]="style.span.color" class="ammo-count"
+          id="style.element">60</span>
+      </div>
+          <svg width="65px" height="65px" xmlns="http://www.w3.org/2000/svg">
+            <rect id="gridRect" width="100%" height="100%" fill="url(#grid)"/>
+          </svg>
+        </div>
+      </div> <!-- functions-container end -->
+    </div>
+
+    <div id="ammo-grid-container" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="chosenAmmoStyles">
+      <div cdkDrag *ngFor="let style of chosenAmmoStyles; i as index;" class="image-container" id="{{style.element}}"
+        (cdkDragStarted)="setDraggedElement($event)" 
+        (cdkDragEnded)="dragEnd($event)"
+        
+        [style.position]="style.container.position" [style.top.px]="style.container.top"
+        [style.left.px]="style.container.left">
+
+        <img [style.position]="style.position" [style.top.px]="style.top" [style.left.px]="style.left"
+          id="{{style.element}}" alt="{{style.element}}" [src]="style.src">
+
+        <span *ngIf="style.span" [style.position]="style.position" [style.top.px]="style.span.top"
+          [style.left.px]="style.span.left" [style.color]="style.span.color" class="ammo-count"
+          id="style.element">60</span>
+      </div>
+
+      <svg width="321px" height="321px" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="grid" width="64px" height="64px" patternUnits="userSpaceOnUse">
+            <path d="M 64 0 L 0 0 0 64" fill="none" stroke="gray" stroke-width="1" />
+          </pattern>
+        </defs>
+        <rect (dragover)="dragOver($event)" (drop)="dropRect($event)" id="gridRect" width="100%" height="100%"
+          fill="url(#grid)" />
+      </svg>
+    </div>
+
+  </div>
+  <!--drag-ammo-section end-->
+</div>

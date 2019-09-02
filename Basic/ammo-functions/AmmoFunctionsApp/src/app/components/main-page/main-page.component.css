@@ -1,0 +1,12 @@
+#gridRect{
+    margin: auto;
+
+}
+#main-grid-container {
+    background: darkgray;
+    width: 641px;
+    height: 641px;
+    position: relative;
+    margin: auto;
+    
+}

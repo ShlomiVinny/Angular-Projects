@@ -1,15 +1,20 @@
-<fieldset>
+<fieldset class="text-center">
     <legend>Order Details:</legend>
     <form [formGroup]="orderForm" (ngSubmit)="getOrderFormValues()" >
+            <div class="form-group">
         <label>Name:</label>
-        <input formControlName="name" type="text" placeholder="Enter your name">
-        <br>
+        <input class="form-control" formControlName="name" type="text" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
         <label>Phone:</label>
-        <input formControlName="phone" type="text" placeholder="Enter your phone number">
-        <br>
+        <input class="form-control" formControlName="phone" type="text" placeholder="Enter your phone number">
+        </div>
+        <div class="form-group">
         <label>Email:</label>
-        <input formControlName="email" type="text" placeholder="Enter your Email">
-        <br>
-        <button [disabled]='!orderForm.valid'>Submit</button>
+        <input class="form-control" formControlName="email" type="email" aria-describedby="emailHelp" placeholder="Enter your Email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <button [disabled]='!orderForm.valid' class="btn btn-primary">Submit</button>
+            
     </form>
 </fieldset>
